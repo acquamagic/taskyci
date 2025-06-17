@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # taskyci
 taskyci
 =======
@@ -28,4 +27,4 @@ Run the command `go run main.go` and the project should run on `locahost:8080`
 This project is licensed under the terms of the MIT license.
 
 Original project: https://github.com/dogukanozdemir/golang-todo-mongodb
->>>>>>> tasky-rd
+
