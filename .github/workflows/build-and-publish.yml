@@ -15,7 +15,9 @@ env:
     DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
     AWS_REGION: ${{ secrets.AWS_REGION }}
     EKS_CLUSTER_NAME: ${{ secrets.EKS_CLUSTER_NAME }} 
-
+    MONGODB_URI: ${{ secrets.MONGODB_URI }}
+    SECRET_KEY: ${{ secrets.SECRET_KEY }}
+    
 jobs:
     build-push-deploy:
       runs-on: ubuntu-latest
@@ -50,7 +52,11 @@ jobs:
             aws eks update-kubeconfig \
             --name ${{ secrets.EKS_CLUSTER_NAME }} \
             --region ${{ secrets.AWS_REGION }}
+            
+        - name: Replace environment variables in manifest
 
+          run: |
+            envsubst < tasky-deployment.template.yaml > tasky-deployment.yaml
         - name: Deploy to EKS
           run: |
             kubectl apply -f tasky-deployment.yaml
