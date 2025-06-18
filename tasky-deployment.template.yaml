@@ -1,0 +1,5 @@
+env:
+    - name: MONGODB_URI
+      value: "${MONGODB_URI}"
+    - name: SECRET_KEY
+      value: "${SECRET_KEY}"
