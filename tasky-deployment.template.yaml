@@ -1,5 +1,38 @@
-env:
-    - name: MONGODB_URI
-      value: "${MONGODB_URI}"
-    - name: SECRET_KEY
-      value: "${SECRET_KEY}"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasky
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tasky
+  template:
+    metadata:
+      labels:
+        app: tasky
+    spec:
+      serviceAccountName: tasky-admin
+      containers:
+        - name: tasky
+          image: proton69/cicd:1.2
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGODB_URI
+              value: "${MONGODB_URI}"
+            - name: SECRET_KEY
+              value: "${SECRET_KEY}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tasky
+spec:
+  selector:
+    app: tasky
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
