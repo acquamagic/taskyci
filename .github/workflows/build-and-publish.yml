@@ -65,6 +65,7 @@ jobs:
             envsubst < tasky-deployment.template.yaml > tasky-deployment.yaml
         - name: Deploy to EKS
           run: |
+            export IMAGE_TAG=${IMAGE_TAG}
             kubectl apply -f tasky-deployment.yaml
             kubectl apply -f tasky-serviceaccount.yaml
             kubectl apply -f tasky-clusterrolebinding.yaml
