@@ -15,7 +15,7 @@ spec:
       serviceAccountName: tasky-admin
       containers:
         - name: tasky
-          image: proton69/cicd:1.3
+          image: proton69/cicd:1.4
           ports:
             - containerPort: 8080
           env:
