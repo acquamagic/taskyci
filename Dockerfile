@@ -10,7 +10,7 @@ FROM alpine:3.17.0 as release
 
 WORKDIR /app
 # Add a echo message
-RUN echo "This is the message for CI for github actions on $(date '+%Y-%m-%d %H:%M:%S') " > /app/wizexercise.txt
+RUN echo "This is the message for CI for github actions on $(date '+%Y-%m-%d %H:%M:%S')" > /app/wizexercise.txt
 
 COPY --from=build  /go/src/tasky/tasky .
 COPY --from=build  /go/src/tasky/assets ./assets
